@@ -58,18 +58,19 @@ class PostController extends Controller
             'content' => 'required:max:2200',
         ]);
 
-        $image = $request->file('image');
-        $imageName = time().$image->getClientOriginalName();
+        $imageName = $request->file('image')->store(
+            'posts/' . Auth::id(),
+            'public'
+        );
+
         $title = $request->get('title');
-        $content = $request->get('content');
+        $content = $request->get('title');
 
         $post = $request->user()->posts()->create([
             'title' => $title,
-            'image' => 'img/' . $imageName,
+            'image' => $imageName,
             'content' => $content,
         ]);
-
-        $request->image->move(public_path('img'), $imageName);
 
         return redirect()->route('post', ['id' => $post->id]);
     }

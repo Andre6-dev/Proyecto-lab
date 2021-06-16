@@ -6,7 +6,7 @@
     <div class="row justify-content-md-center">
         <div class = "col-md-8">
             <div class="card">
-                <img src="{{asset($post->image)}}" 
+                <img src="{{ Storage::url($post->image) }}" 
                 alt="..."
                 class="card-img-top">
                 <div class="card-body">

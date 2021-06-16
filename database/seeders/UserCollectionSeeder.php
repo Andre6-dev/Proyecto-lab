@@ -19,5 +19,11 @@ class UserCollectionSeeder extends Seeder
         User::factory(10)
           ->has(Post::factory()->count(3))
           ->create();
+        
+        User::factory(1)
+          ->has(Post::factory()->count(3))
+          ->state([
+              "email" => "ndre322@gmail.com", ]) #crea un email y la contraseña es password por defecto.
+          ->create();    
     }
 }
