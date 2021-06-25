@@ -5,6 +5,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\MailController;
 
 Route::get('/',function(){
     return redirect('/posts');
@@ -14,6 +15,7 @@ Route::get('/home',function(){
 });
 
 Route::get('/', [PostController::class, 'index']);
+Route::get('/notificaciones', [CommentController::Class,'notify']);
 Route::view('/posts/create', 'create');
 Route::post('/posts/create', [PostController::class, 'create']);
 
@@ -30,6 +32,8 @@ Route::get('/users/{user}/edit', [UserController::class,'edit'])->name('users.ed
 //Route::view('/users/edit', 'users.edit');
 Route::put('/users/{user}',[UserController::class,'update'])->name('users.update');
 Route::get('/users/{user}/destroy',[UserController::class,'destroy'])->name('users.destroy');
+
+Route::get('email/{numero}', [MailController::class, 'sendMail']);
 
 Auth::routes();
 

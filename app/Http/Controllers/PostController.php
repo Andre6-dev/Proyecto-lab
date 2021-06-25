@@ -7,6 +7,7 @@ use Jenssegers\Mongodb\Eloquent\Model;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 
 class PostController extends Controller
@@ -16,7 +17,7 @@ class PostController extends Controller
     }
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::paginate(10); //limite de 10 de publicaciones
         return view('posts.index', compact('posts'));
     }
 

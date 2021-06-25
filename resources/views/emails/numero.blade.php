@@ -1,0 +1,1 @@
+<p>Hola {{ $user->name }}, el numero que has puesto en el URI {{ $numero }}</p>
